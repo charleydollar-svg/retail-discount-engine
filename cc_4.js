@@ -6,6 +6,7 @@ let products = [
     {name: "Vacuum Cleaner", category: "household", price: 80, inventory: 10}
 ];
 
+// Calculate discounted prices for each product based on category
 for (let product of products) {
     let discountRate = 0;
 
@@ -30,6 +31,7 @@ for (let product of products) {
     console.log(`The discounted price of ${product.name} is $${discountedPrice.toFixed(2)}`);
 }
 
+//customer type
 let customerType = ["Student", "Senior", "Regular"];
 
 let total = 100; // Example total price
@@ -58,6 +60,7 @@ let customerOrders = [
     {order: 1003, name: "Charlie", type: "Regular", products: [{name: "Shirt", qty: 3}]}
 ];
 
+//chekcout process
 for (let i = 0; i < customerOrders.length; i++) {
     let order = customerOrders[i];
     let totalPrice = 0;
@@ -87,18 +90,19 @@ for (let i = 0; i < customerOrders.length; i++) {
 
 console.log("Updated Inventory:", products);
 
-let product = 
-    {name: "CD Player", category: "electronics", price: 20, inventory: 100};
+//key value pairs
+let singleProduct = products[0]; // Example: selecting the first product
 
 let discountRate = 0.10; // 10% discount
-products.price *= (1 - discountRate);
+singleProduct.price *= (1 - discountRate);
 
-for (let key in product) {
-    console.log(`${key}: ${product[key]}`);
+for (let key in singleProduct) {
+    console.log(`${key}: ${singleProduct[key]}`);
 }
 
+// object.entries
 let quantityPurchases = 2;
 
-for (let [key, value] of Object.entries(product)) {
+for (let [key, value] of Object.entries(singleProduct)) {
     console.log(`${key}: ${value}`);
 }
