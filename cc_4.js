@@ -1,3 +1,4 @@
+// Product Catalog
 let products = [
     {name: "CD Player", category: "electronics", price: 20, inventory: 100},
     {name: "Television", category: "electronics", price: 40, inventory: 50},
@@ -66,9 +67,9 @@ for (let i = 0; i < customerOrders.length; i++) {
         for (let k = 0; k < products.length; k++) {
             if (products[k].name === cartProduct.name) {
                 totalCost += products[k].price * cartProduct.qty;
+                products[k].inventory -= cartProduct.qty;
                 break;
             
-                products[k].inventory -= cartProduct.qty;
             }  
         }
     }
