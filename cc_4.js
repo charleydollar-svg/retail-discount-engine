@@ -1,8 +1,8 @@
 let products = [
     {name: "CD Player", category: "electronics", price: 20, inventory: 100},
     {name: "Television", category: "electronics", price: 40, inventory: 50},
-    {name: "Shirt", category: "Apparel", price: 60, inventory: 30},
-    {name: "Produce", category: "Groceries", price: 10, inventory: 20},
+    {name: "Shirt", category: "apparel", price: 60, inventory: 30},
+    {name: "Produce", category: "groceries", price: 10, inventory: 20},
     {name: "Vacuum Cleaner", category: "household", price: 80, inventory: 10}
 ];
 
@@ -14,10 +14,10 @@ for (let product of products) {
         case "electronics":
             discountRate = 0.2; // 20% discount
             break;
-        case "Apparel":
+        case "apparel":
             discountRate = 0.15; // 15% discount
             break;
-        case "Groceries":
+        case "groceries":
             discountRate = 0.1; // 10% discount
             break;
         case "household":
@@ -34,43 +34,38 @@ for (let product of products) {
 //customer type
 let customerType = ["Student", "Senior", "Regular"];
 
-let total = 100; // Example total price
-let extraDiscounts = 0;
+let total = 100; // Total price
+let extraDiscounts = (customerType === "Student") ? 0.05 : (customerType === "Senior") ? 0.07 : 0;
 
     if (customerType === "Student") {
-        discount = 0.05; // 5% discount
+        discountRate = 0.05; // 5% discount
     } 
     else if (customerType === "Senior") {
-        discount = 0.07; // 7% discount
+        discountRate = 0.07; // 7% discount
     } 
     else {
-        discount = 0; // No discount
+        discountRate = 0; // No discount
     }
 
-    let findTotalPrice = total - (total * extraDiscounts);
+    let TotalPrice = total - (total * extraDiscounts);
 
-    console.log("Customer Type:", customerType);
-    console.log("Original Total: $", total.toFixed(2));
-    console.log("Extra Discount: ", (extraDiscounts * 100).toFixed(2) + "%");
-    console.log("Total after Extra Discount: $", findTotalPrice.toFixed(2));
-
+//Checkout Process
 let customerOrders = [
-    {order: 1001, name: "Alice", type: "Student", products: [{name: "CD Player", qty: 2}]},
-    {order: 1002, name: "Bob", type: "Senior", products: [{name: "Television", qty: 1}]},
-    {order: 1003, name: "Charlie", type: "Regular", products: [{name: "Shirt", qty: 3}]}
+    {orderId: 1001, name: "Alice", type: "Student", products: [{name: "CD Player", qty: 2}]},
+    {orderId: 1002, name: "Bob", type: "Senior", products: [{name: "Television", qty: 1}]},
+    {orderId: 1003, name: "Charlie", type: "Regular", products: [{name: "Shirt", qty: 3}]}
 ];
 
-//chekcout process
 for (let i = 0; i < customerOrders.length; i++) {
     let order = customerOrders[i];
-    let totalPrice = 0;
+    let totalCost = 0;
 
     for (let j = 0; j < order.products.length; j++) {
     let cartProduct = order.products[j];
 
         for (let k = 0; k < products.length; k++) {
             if (products[k].name === cartProduct.name) {
-                totalPrice += products[k].price * cartProduct.qty;
+                totalCost += products[k].price * cartProduct.qty;
                 break;
             
                 products[k].inventory -= cartProduct.qty;
@@ -79,30 +74,31 @@ for (let i = 0; i < customerOrders.length; i++) {
     }
 
     if (order.type === "Student") {
-        totalPrice *= 0.95; // 5% discount
+        totalCost *= 0.95; // 5% discount
     }
     else if (order.type === "Senior") {
-        totalPrice *= 0.93; // 7% discount
+        totalCost *= 0.93; // 7% discount
     }
 
-    console.log(`Order ID: ${order.order}, Customer: ${order.name}, Total Price: $${totalPrice.toFixed(2)}`);
+    console.log("       Customer Checkout Number:", i + 1);
+    console.log(`Order ID: ${order.orderId}, Customer: ${order.name}, Total Cost: $${totalCost.toFixed(2)}`);
 }
 
-console.log("Updated Inventory:", products);
 
 //key value pairs
-let singleProduct = products[0]; // Example: selecting the first product
+let Product = products[0]; // Example: selecting the first product
+console.log("       Single Product Details:");
 
-let discountRate = 0.10; // 10% discount
-singleProduct.price *= (1 - discountRate);
-
-for (let key in singleProduct) {
-    console.log(`${key}: ${singleProduct[key]}`);
+    for (let key in Product) {
+    console.log(`${key}: ${Product[key]}`);
 }
 
 // object.entries
 let quantityPurchases = 2;
+console.log("       logged all product info after inventory is updated:");
 
-for (let [key, value] of Object.entries(singleProduct)) {
+products.forEach(product => {
+    for (let [key, value] of Object.entries(product)) {
     console.log(`${key}: ${value}`);
 }
+});
