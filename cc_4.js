@@ -18,10 +18,7 @@ for (let product of products) {
         case "apparel":
             discountRate = 0.15; // 15% discount
             break;
-        case "groceries":
-            discountRate = 0.1; // 10% discount
-            break;
-        case "household":
+        case "groceries" && "household":
             discountRate = 0.1; // 10% discount
             break;
 
@@ -88,7 +85,7 @@ for (let i = 0; i < customerOrders.length; i++) {
 
 //key value pairs
 let Product = products[0]; // Example: selecting the first product
-console.log("       Single Product Details:");
+console.log("       Single Product Details after Discount Applied:");
 
     for (let key in Product) {
     console.log(`${key}: ${Product[key]}`);
